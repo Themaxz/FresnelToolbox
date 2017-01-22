@@ -1,0 +1,12 @@
+function rad1=prop_geom(rad,dq,dv,1)
+s=size(rad);
+x=[-(s(1)-1)./2:1:(s(1)-1)./2].*dq;
+y=[-(s(2)-1)./2:1:(s(2)-1)./2].*dq;
+u=[-(s(3)-1)./2:1:(s(3)-1)./2].*dv;
+v=[-(s(4)-1)./2:1:(s(4)-1)./2].*dv;
+[X,Y,U,V]=ndgrid(x,y,u,v);
+X_=X;
+Y_=Y;
+U_=[-X./f+U];
+V_=[-Y./f+V];
+rad1=interpn(X,Y,U,V,L,X_,Y_,U_,V_);

@@ -1,0 +1,14 @@
+function L1=shear2(L,w,Dv,t)
+s=size(L);
+% x=[-(s(1)-1)./2:1:(s(1)-1)./2].*dq;
+% y=[-(s(2)-1)./2:1:(s(2)-1)./2].*dq;
+% u=[-(s(3)-1)./2:1:(s(3)-1)./2].*dv;
+% v=[-(s(4)-1)./2:1:(s(4)-1)./2].*dv;
+x=-w./2:w./(s(1)-1):w./2;
+y=-w./2:w./(s(2)-1):w./2;
+u=-Dv./2:Dv./(s(3)-1):Dv./2;
+v=-Dv./2:Dv./(s(4)-1):Dv./2;
+[X,Y,U,V]=ndgrid(x,y,u,v);
+shear_X=X+(t.*U);
+shear_Y=Y+(t.*V);
+L1=interpn(X,Y,U,V,L,shear_X,shear_Y,U,V);

@@ -1,0 +1,10 @@
+function L1=tilt(L,dq,dv,t1,t2)
+s=size(L);
+x=[-(s(1)-1)./2:1:(s(1)-1)./2].*dq;
+y=[-(s(2)-1)./2:1:(s(2)-1)./2].*dq;
+u=[-(s(3)-1)./2:1:(s(3)-1)./2].*dv;
+v=[-(s(4)-1)./2:1:(s(4)-1)./2].*dv;
+[X,Y,U,V]=ndgrid(x,y,u,v);
+tilt_X=X-t1;
+tilt_Y=Y-t2;
+L1=interpn(X,Y,U,V,L,tilt_X,tilt_Y,U,V);

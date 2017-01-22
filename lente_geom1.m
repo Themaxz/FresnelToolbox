@@ -1,0 +1,12 @@
+function rad1=lente_geom1(rad,w,Dv,f)
+s=size(rad);
+x=-w./2:w./(s(1)-1):w./2;
+y=-w./2:w./(s(2)-1):w./2;
+u=-Dv./2:Dv./(s(3)-1):Dv./2;
+v=-Dv./2:Dv./(s(4)-1):Dv./2;
+[X,Y,U,V]=ndgrid(x,y,u,v);
+X_=X;
+Y_=Y;
+U_=(-X./f)+U;
+V_=(-Y./f)+V;
+rad1=interpn(X,Y,U,V,rad,X_,Y_,U_,V_);

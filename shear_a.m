@@ -1,0 +1,12 @@
+function L1=shear_a(L,alpha)
+s=size(L);
+x=[-(s(1)-1)./2:1:(s(1)-1)./2];
+y=[-(s(2)-1)./2:1:(s(2)-1)./2];
+u=[-(s(3)-1)./2:1:(s(3)-1)./2];
+v=[-(s(4)-1)./2:1:(s(4)-1)./2];
+[X,Y,U,V]=ndgrid(x,y,u,v);
+% shear_X=X+(t.*U./s(3));
+% shear_Y=Y+(t.*V./s(4));
+shear_X = U.*(1-1./(alpha))+(X./alpha);
+shear_Y = V.*(1-1./(alpha))+(Y./alpha);
+L1=interpn(X,Y,U,V,L,shear_X,shear_Y,U,V);
